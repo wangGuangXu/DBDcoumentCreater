@@ -15,6 +15,9 @@ using System.Diagnostics;
 using Core.Ext;
 namespace DBDcoumentCreater
 {
+    /// <summary>
+    /// 登陆窗体
+    /// </summary>
     public partial class Form1 : Form
     {
         private string defaultHtml = "数据库表目录.html";
@@ -33,6 +36,7 @@ namespace DBDcoumentCreater
             new TaskBarUtil(this, notifyIcon1);
         }
 
+        #region 连接数据库
         private void btnConn_Click(object sender, EventArgs e)
         {
             if (txtConn.Text.Length == 0)
@@ -90,7 +94,9 @@ namespace DBDcoumentCreater
                 lblMessage.Text = "数据库异常 请确认";
             }
         }
+        #endregion
 
+        #region 导出
         private void btnExport_Click(object sender, EventArgs e)
         {
             //输入验证
@@ -112,7 +118,13 @@ namespace DBDcoumentCreater
             this.Loading();
             ThreadPool.QueueUserWorkItem(new WaitCallback(Export));
         }
+        #endregion
 
+        #region 导出
+        /// <summary>
+        /// 导出
+        /// </summary>
+        /// <param name="o"></param>
         public void Export(object o)
         {
             Directory.CreateDirectory(".//tmp");
@@ -130,8 +142,7 @@ namespace DBDcoumentCreater
 
             //将选中项的总数 设置为进度条最大值 +1项是表目录文件
             tpbExport.Value = 0;
-            tpbExport.Maximum = ckbData.CheckedItems.Count
-                + ckbTables.CheckedItems.Count + 1;
+            tpbExport.Maximum = ckbData.CheckedItems.Count + ckbTables.CheckedItems.Count + 1;
 
             //获取需要导出的表结构 选中项
             List<string> lst = new List<string>();
@@ -211,9 +222,11 @@ namespace DBDcoumentCreater
             {
                 lblMessage.Text = "正在编译CHM文件...";
                 //编译CHM文档
-                ChmHelp c3 = new ChmHelp();
-                c3.DefaultPage = defaultHtml;
-                c3.Title = txtTitle.Text;
+                ChmHelp c3 = new ChmHelp
+                {
+                    DefaultPage = defaultHtml,
+                    Title = txtTitle.Text
+                };
                 c3.ChmFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), c3.Title + ".chm");
                 c3.RootPath = @"./tmp";
                 c3.Compile();
@@ -230,7 +243,8 @@ namespace DBDcoumentCreater
             {
                 this.CloseLoading();
             }
-        }
+        } 
+        #endregion
 
         private void txtConn_TextChanged(object sender, EventArgs e)
         {
@@ -298,10 +312,6 @@ namespace DBDcoumentCreater
         }
         #endregion
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
     }
 }
