@@ -4,6 +4,9 @@ using System.Data;
 using System.Text;
 namespace Core.JsonSerialize
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MyJsonBuilder : QuickJsonBuilder
     {
         /// <summary> 表风格
