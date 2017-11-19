@@ -1,0 +1,38 @@
+﻿body {
+    font-size: 9pt;
+}
+
+.styledb {
+    font-size: 14px;
+}
+
+.title {
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+a {
+    color: #015FB6;
+}
+
+    a:link, a:visited, a:active {
+        color: #015FB6;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: #E33E06;
+    }
+
+tr:hover {
+    background-color: #eee;
+}
+
+table {
+    margin:0 5%  ;
+    width:90%;
+}
+
+table th {
+    background-color: #eee;
+}
