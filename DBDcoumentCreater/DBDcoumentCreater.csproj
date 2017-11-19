@@ -137,6 +137,8 @@
     <Content Include="html\style.css" />
     <Content Include="Icon.ico" />
     <Content Include="Lib\hha.dll" />
+    <Content Include="Resources\1.png" />
+    <Content Include="Resources\2.png" />
     <None Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>
